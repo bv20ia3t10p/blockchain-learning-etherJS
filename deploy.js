@@ -5,7 +5,7 @@ const fs = require('fs-extra')
 //yarn add dotenv
 require('dotenv').config()
 async function main() {
-  const provider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:7545')
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
   const abi = fs.readFileSync('./SimpleStorage_sol_SimpleStorage.abi', 'utf8')
   const binary = fs.readFileSync(
@@ -16,12 +16,12 @@ async function main() {
   console.log('Deploying, please wait')
   const contract = await contractFactory.deploy()
   // Press ctrl + left click on a function to view its definition
-  const deploymentReceipt = await contract.deployTransaction.wait(1) // Wait for 1 block confirmation then the rest of the code
-  const nonce = await wallet.getTransactionCount()
-  console.log('Here is the contract info')
-  console.log(contract)
-  console.log('And the receipt')
-  console.log(deploymentReceipt)
+  //   const deploymentReceipt = await contract.deployTransaction.wait(1) // Wait for 1 block confirmation then the rest of the code
+  //   const nonce = await wallet.getTransactionCount()
+  //   console.log('Here is the contract info')
+  //   console.log(contract)
+  //   console.log('And the receipt')
+  //   console.log(deploymentReceipt)
   //   console.log('Deploying with only transaction data')
   //   const tx = {
   //     nonce: nonce,
