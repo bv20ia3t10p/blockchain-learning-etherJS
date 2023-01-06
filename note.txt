@@ -1,0 +1,4 @@
+To import external solidity
+yarn install solc
+compile solidity
+yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol
